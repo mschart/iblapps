@@ -11,6 +11,7 @@ import alf.io
 from ibllib.ephys import ephysqc
 from ibllib.io.extractors import ephys_fpga, training_wheel, ephys_trials
 import ibllib.io.raw_data_loaders as rawio
+# from ibllib.ephys.ephyspc import _qc_from_path
 
 import ViewEphysQC as ViewEphysQC
 import qt as qt
@@ -104,6 +105,8 @@ if __name__ == "__main__":
 
     w = ViewEphysQC.viewqc()
     qc_frame = _qc_from_path(sess_path, display=w.wplot.canvas.ax)
+    from ibllib.ephys.bpodqc import get_bpodqc_frame
+    qc_frame = get_bpodqc_frame(sess_path)
     w.update_df(qc_frame)
     # w = ViewEphysQC.viewqc(qc_frame)
 
